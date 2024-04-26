@@ -1,5 +1,10 @@
 ﻿using MarioKart;
 
+string nomepersonagem = "";
+int velocidade = 0;
+int manobrabilidade = 0;
+int poder = 0;
+int pontos=0;
 int rollDice()
 {
  Random randNum = new Random();
@@ -30,6 +35,59 @@ string getRandomBlock()
 void logRollResult(string characterName, string block,int diceResult, int attribute )
 {
     Console.WriteLine($"{characterName} rolou um dado de {block} {diceResult} + {attribute} = {diceResult + attribute}");
+}
+
+void choiceCharacter(int numPersonagem)
+{
+    switch (numPersonagem)
+    {
+        case 1:
+            nomepersonagem = "Mário";
+            velocidade = 4;
+            manobrabilidade = 3;
+            poder = 3;
+            pontos = 0;
+            break;
+        case 2:
+            nomepersonagem = "Peach";
+            velocidade = 3;
+            manobrabilidade = 4;
+            poder = 2;
+            pontos = 0;
+            break;
+        case 3:
+            nomepersonagem = "Yoshi";
+            velocidade = 2;
+            manobrabilidade = 4;
+            poder = 3;
+            pontos = 0;
+            break;
+        case 4:
+            nomepersonagem = "Bowser";
+            velocidade = 5;
+            manobrabilidade = 2;
+            poder = 5;
+            pontos = 0;
+            break;
+        case 5:
+            nomepersonagem = "Luigi";
+            velocidade = 3;
+            manobrabilidade = 4;
+            poder = 4;
+            pontos = 0;
+            break;
+        case 6:
+            nomepersonagem = "Donkey Kong";
+            velocidade = 2;
+            manobrabilidade = 2;
+            poder = 5;
+            pontos = 0;
+            break;
+        default:
+            Console.WriteLine("Personagem não identificado");
+            break;
+
+    }
 }
 
 void playRaceEngine(Personagem p1, Personagem p2)
@@ -122,9 +180,30 @@ void declareWinner(Personagem p1, Personagem p2)
 
 
 //Jogo
+Console.WriteLine("Escolha o primeiro Personagem para a disputa");
+Console.WriteLine("1-Mário");
+Console.WriteLine("2-Peach");
+Console.WriteLine("3-Yoshi");
+Console.WriteLine("4-Bowser");
+Console.WriteLine("5-Luigi");
+Console.WriteLine("6-Donkey kong");
+int personagem1 = Convert.ToInt32(Console.ReadLine());
+choiceCharacter(personagem1);
+Personagem player1 = new Personagem(nomepersonagem,velocidade, manobrabilidade, poder, pontos); 
+Console.Clear();
 
-Personagem player1 = new Personagem("Mário",3,3,3,0);
-Personagem player2 = new Personagem("Luigi",3,4,4,0);
+Console.WriteLine("Escolha o segundo Personagem para a disputa");
+Console.WriteLine("1-Mário");
+Console.WriteLine("2-Peach");
+Console.WriteLine("3-Yoshi");
+Console.WriteLine("4-Bowser");
+Console.WriteLine("5-Luigi");
+Console.WriteLine("6-Donkey kong");
+int personagem2 = Convert.ToInt32(Console.ReadLine());
+choiceCharacter(personagem2);
+Personagem player2 = new Personagem(nomepersonagem, velocidade, manobrabilidade, poder, pontos);
+Console.Clear();
+
 Console.WriteLine($"Corrida entre {player1.Nome} e {player2.Nome} começando...\n");
 playRaceEngine(player1, player2);
 declareWinner(player1, player2);
